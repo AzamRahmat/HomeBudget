@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.studios.samad.homebudget.MainActivity">
+
+
+
+    <!-- Expenses -->
+<RelativeLayout
+    android:id="@+id/expenses_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp">
+
+    <ImageView
+        android:id="@+id/expenses_img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:gravity="center_horizontal"
+        android:src="@drawable/expenses"/>
+
+    <TextView
+        android:id="@+id/expenses_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expenses"
+        android:textSize="16dp"
+        android:gravity="center_horizontal"
+        android:textColor="#000000"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/expenses_img"
+        android:layout_toEndOf="@+id/expenses_img"
+        android:paddingLeft="10dp"
+        android:textStyle="normal|italic"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/expenses_edit_text"
+        android:text="$200000"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/expenses_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="52dp"
+        android:layout_marginEnd="52dp"
+        android:textColor="#f7ad0f" />
+
+    <ImageView
+        android:id="@+id/expenses_next"
+        android:src="@drawable/next"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:gravity="center_horizontal"
+        android:layout_alignTop="@+id/expenses_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout> <!-- Expenses -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <!--Bills -->
+    <RelativeLayout
+        android:id="@+id/bills_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp">
+
+
+        <ImageView
+            android:id="@+id/bills_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/bills"/>
+
+        <TextView
+            android:id="@+id/bills_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Bills"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/bills_img"
+            android:layout_toEndOf="@+id/bills_img"
+            android:paddingLeft="10dp"
+            android:textStyle="normal|italic"
+            android:textIsSelectable="true" />
+
+        <TextView
+            android:id="@+id/bills_edit_text"
+            android:text="$200"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/bills_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="52dp"
+            android:layout_marginEnd="52dp"
+            android:textColor="#166dd7" />
+
+        <ImageView
+            android:id="@+id/bills_next"
+            android:src="@drawable/next"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/bills_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout><!--Bills -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <!--Income -->
+    <RelativeLayout
+        android:id="@+id/income_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp">
+
+        <ImageView
+            android:id="@+id/income_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/income"/>
+
+        <TextView
+            android:id="@+id/income_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Income"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/income_img"
+            android:layout_toEndOf="@+id/income_img"
+            android:paddingLeft="10dp"
+            android:textStyle="normal|italic"
+            android:textIsSelectable="true" />
+
+        <TextView
+            android:id="@+id/income_edit_text"
+            android:text="$200"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/income_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="52dp"
+            android:layout_marginEnd="52dp"
+            android:textColor="#375e60" />
+
+        <ImageView
+            android:id="@+id/income_next"
+            android:src="@drawable/next"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/income_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout><!--Income -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <!-- Budget -->
+    <RelativeLayout
+        android:id="@+id/budget_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp">
+
+        <ImageView
+            android:id="@+id/budget_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/budget"/>
+
+        <TextView
+            android:id="@+id/budget_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Budget"
+            android:textSize="16dp"
+            android:gravity="center_horizontal"
+            android:textColor="#000000"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/budget_img"
+            android:layout_toEndOf="@+id/budget_img"
+            android:paddingLeft="10dp"
+            android:textStyle="normal|italic"
+            android:textIsSelectable="true" />
+
+        <TextView
+            android:id="@+id/budget_edit_text"
+            android:text="$200"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/budget_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="52dp"
+            android:layout_marginEnd="52dp"
+            android:textColor="#529940" />
+
+        <ImageView
+            android:id="@+id/budget_next"
+            android:src="@drawable/next"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/budget_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout><!--budget -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <!-- Accounts -->
+    <RelativeLayout
+        android:id="@+id/accounts_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp">
+
+        <ImageView
+            android:id="@+id/accounts_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/accounts"/>
+
+        <TextView
+            android:id="@+id/accounts_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Accounts"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/accounts_img"
+            android:layout_toEndOf="@+id/accounts_img"
+            android:paddingLeft="10dp"
+            android:textStyle="normal|italic"
+            android:textIsSelectable="true" />
+
+        <TextView
+            android:id="@+id/accounts_edit_text"
+            android:text="$200"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/accounts_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="52dp"
+            android:layout_marginEnd="52dp" />
+
+        <ImageView
+            android:id="@+id/accounts_next"
+            android:src="@drawable/next"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/accounts_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout><!--Accounts -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <!-- Available Balance -->
+
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:text="Available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:textSize="70px"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:text="$250000"
+            android:textSize="90px"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>    <!-- Available Balance -->
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="216dp"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/trends"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:text="Trends"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/payees"
+        android:text="Payees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
+
+
+

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".AddExpensesActivity"
+    android:focusable="false">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textSize="25dp"
+        android:id="@+id/bills_date_txt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:textColor="#3b5ecf" />
+
+    <EditText
+        android:id="@+id/bills_select_date"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:hint="Tap to Select Date"
+        android:layout_below="@+id/bills_date_txt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bill Description"
+        android:textSize="25dp"
+        android:id="@+id/bill_type_txt"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/bills_select_date"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#e80d0d" />
+
+    <EditText
+        android:hint="Tap to write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/bills_edit_type"
+        android:layout_below="@+id/bill_type_txt"
+        android:layout_alignRight="@+id/bills_select_date"
+        android:layout_alignEnd="@+id/bills_select_date"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/bills_btn_cancel"
+        android:layout_below="@+id/bills_reminder_btn"
+        android:layout_alignRight="@+id/bills_reminder_btn"
+        android:layout_alignEnd="@+id/bills_reminder_btn"
+        android:layout_marginTop="42dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/bills_btn_save"
+        android:layout_alignTop="@+id/bills_btn_cancel"
+        android:layout_toRightOf="@+id/bills_date_txt"
+        android:layout_toEndOf="@+id/bills_date_txt" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reminder"
+        android:id="@+id/bills_reminder_btn"
+        android:checked="true"
+        android:layout_below="@+id/bills_amount_txt"
+        android:layout_toRightOf="@+id/bills_amount_txt"
+        android:layout_toEndOf="@+id/bills_amount_txt"
+        android:layout_marginTop="54dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amount"
+        android:textSize="25dp"
+        android:id="@+id/bills_amount_txt"
+        android:textColor="#3b5ecf"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:hint="Tap to write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/bills_select_amount"
+        android:layout_below="@+id/bills_amount_txt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/bills_edit_type"
+        android:layout_alignEnd="@+id/bills_edit_type" />
+</RelativeLayout>
