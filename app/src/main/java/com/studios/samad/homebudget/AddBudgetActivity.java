@@ -33,7 +33,7 @@ public class AddBudgetActivity extends AppCompatActivity {
     private Preferences p;
 
     private int Budget_id;
-    private String  str_Budget_name;
+    private String str_Budget_catg;
     private String  str_Budget_amount;
     private String str_Budget_date;
 
@@ -68,12 +68,12 @@ public class AddBudgetActivity extends AppCompatActivity {
         this.str_Budget_date = Budget_date;
     }
 
-    public String getBudget_name() {
-        return str_Budget_name;
+    public String getBudget_catg() {
+        return str_Budget_catg;
     }
 
-    public void setBudget_name(String Budget_name) {
-        this.str_Budget_name = Budget_name;
+    public void setBudget_catg(String Budget_name) {
+        this.str_Budget_catg = Budget_name;
     }
 
     int year_x, month_x, day_x;
@@ -81,15 +81,8 @@ public class AddBudgetActivity extends AppCompatActivity {
 
     EditText txt_bgtdate;
 
-    public String getBudget_catg()
-    {
-        return "";
-    }
 
-    public void setBudget_catg(String string)
-    {
 
-    }
 
     @Override
     public void onResume() {
@@ -106,7 +99,7 @@ public class AddBudgetActivity extends AppCompatActivity {
             {
                 txtBgtName.setEnabled(false);
                 objLoc =  dbHandler.getBudget(Budget_id);
-                txtBgtName.setText(objLoc.getBudget_name());
+                txtBgtName.setText(objLoc.getBudget_catg());
                 txtBgtAmount.setText(objLoc.getBudget_amount());
                 txtBgtDate.setText(objLoc.getBudget_date());
                 //  isupdate = true;
@@ -193,7 +186,7 @@ public class AddBudgetActivity extends AppCompatActivity {
 
             // Adding values to variables then in database
 
-            str_Budget_name = txtBgtName.getText().toString();
+            str_Budget_catg = txtBgtName.getText().toString();
             str_Budget_amount = txtBgtAmount.getText().toString();
             str_Budget_date = txtBgtDate.getText().toString();
 
@@ -233,7 +226,7 @@ public class AddBudgetActivity extends AppCompatActivity {
 
             // Adding values to variables then in database
 
-            str_Budget_name = txtBgtName.getText().toString();
+            str_Budget_catg = txtBgtName.getText().toString();
             str_Budget_amount = txtBgtAmount.getText().toString();
             str_Budget_date = txtBgtDate.getText().toString();
 

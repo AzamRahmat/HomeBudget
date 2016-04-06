@@ -15,18 +15,12 @@ import java.util.Calendar;
  */
 public class DataBaseHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
     private static final String DATABASE_NAME = "HomeBudget";
 
     private static final String Expenses = "Expenses";
     private static final String Bills = "Bills";
     private static final String Income = "Income";
-    private static final String Rent = "Rent";
-    private static final String Food = "Food";
-    private static final String Dep = "Dep";
-    private static final String Ent = "Ent";
-    private static final String Car = "Car";
-    private static final String Med = "Med";
     private static final String Budget = "Budget";
     private static final String Totals = "Totals";
 
@@ -44,18 +38,6 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE IF NOT EXISTS Income (IncomeID INTEGER PRIMARY KEY, IncomeName  TEXT, IncomeAmount  INT,	IncomeDate  TEXT )");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS Rent (RentID INTEGER PRIMARY KEY, RentName  TEXT, RentAmount  INT,	RentDate  TEXT )");
-
-        db.execSQL("CREATE TABLE IF NOT EXISTS Food (FoodID INTEGER PRIMARY KEY, FoodName  TEXT, FoodAmount  INT,	FoodDate  TEXT )");
-
-        db.execSQL("CREATE TABLE IF NOT EXISTS Dep (DepID INTEGER PRIMARY KEY, DepName  TEXT, DepAmount  INT,	DepDate  TEXT )");
-
-        db.execSQL("CREATE TABLE IF NOT EXISTS Ent (EntID INTEGER PRIMARY KEY, EntName  TEXT, EntAmount  INT,	EntDate  TEXT )");
-
-        db.execSQL("CREATE TABLE IF NOT EXISTS Car (CarID INTEGER PRIMARY KEY, CarName  TEXT, CarAmount  INT,	CarDate  TEXT )");
-
-        db.execSQL("CREATE TABLE IF NOT EXISTS Med (MedID INTEGER PRIMARY KEY, MedName  TEXT, MedAmount  INT,	MedDate  TEXT )");
-
         db.execSQL("CREATE TABLE IF NOT EXISTS Totals (TotalID INTEGER PRIMARY KEY, BudgetDate  TEXT, TotalExpense  DOUBLE, TotalBudget DOUBLE, TotalBill DOUBLE,TotalIncome  DOUBLE , TotalAvailable  DOUBLE )");
         db.execSQL("CREATE TABLE IF NOT EXISTS Budget (BudgetID INTEGER PRIMARY KEY, BudgetCatg  TEXT, BudgetAmount INT, BudgetDate  TEXT )");
     }
@@ -67,11 +49,6 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Expenses");
         db.execSQL("DROP TABLE IF EXISTS Bills");
         db.execSQL("DROP TABLE IF EXISTS Income");
-        db.execSQL("DROP TABLE IF EXISTS Rent");
-        db.execSQL("DROP TABLE IF EXISTS Food");
-        db.execSQL("DROP TABLE IF EXISTS Dep");
-        db.execSQL("DROP TABLE IF EXISTS Car");
-        db.execSQL("DROP TABLE IF EXISTS Med");
         db.execSQL("DROP TABLE IF EXISTS Totals");
         db.execSQL("DROP TABLE IF EXISTS Budget");
 //haha bs krty jao drop :/
@@ -820,7 +797,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         Long id = selectMaxID(Budget, "BudgetID");
         ContentValues values = new ContentValues();
         values.put("BudgetID", id);
-        values.put("BudgetCatg", String.valueOf(obj.getBudget_name()));
+        values.put("BudgetCatg", String.valueOf(obj.getBudget_catg()));
         values.put("BudgetAmount", String.valueOf(obj.getBudget_amount()));
         values.put("BudgetDate", String.valueOf(obj.getBudget_date()));
 

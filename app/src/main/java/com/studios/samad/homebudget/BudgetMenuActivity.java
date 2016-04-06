@@ -21,7 +21,7 @@ public class BudgetMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(BudgetMenuActivity.this, AddBudgetActivity.class);
+                Intent myIntent = new Intent(BudgetMenuActivity.this, ViewBudgetActivity.class);
                 startActivity(myIntent);
 
             }
