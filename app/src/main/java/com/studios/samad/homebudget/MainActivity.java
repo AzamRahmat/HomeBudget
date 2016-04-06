@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(MainActivity.this, AddExpensesActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, ViewExpensesActivity.class);
                 startActivity(myIntent);
 
             }
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(MainActivity.this, AddBillsActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, ViewBillsActivity.class);
                 startActivity(myIntent);
 
             }

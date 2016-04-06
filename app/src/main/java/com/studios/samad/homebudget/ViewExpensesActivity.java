@@ -3,6 +3,7 @@ package com.studios.samad.homebudget;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ public class ViewExpensesActivity extends Activity {
     private AddExpensesActivity obj;
     private String ActivityType;
     private Preferences p;
+    private Button add;
 
 
 
@@ -51,20 +54,15 @@ public class ViewExpensesActivity extends Activity {
         }
 
 
-
-        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
+        add = (Button) findViewById(R.id.btn_add_expense);
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                    long arg3) {
-                // TODO Auto-generated method stub
-                obj =  detailed_arr.get(arg2);
-                p.setPrefVal(ActivityType,obj.getExpenses_id()+"" );
-                ViewExpensesActivity.this.finish();
+            public void onClick(View v) {
+
+                Intent myIntent = new Intent(getApplicationContext(), AddExpensesActivity.class);
+                startActivity(myIntent);
             }
-
         });
-
 
 
 
@@ -85,7 +83,7 @@ public class ViewExpensesActivity extends Activity {
         });
 
 
-        Set_Refresh_Data();
+       // Set_Refresh_Data();
 
     }
 
@@ -144,9 +142,12 @@ public class ViewExpensesActivity extends Activity {
         TextView lbl_amount;
         TextView lbl_date;
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Set_Refresh_Data();
 
-
-
+    }
 
     class Adapter_Class extends ArrayAdapter<AddExpensesActivity> {
         Activity activity;

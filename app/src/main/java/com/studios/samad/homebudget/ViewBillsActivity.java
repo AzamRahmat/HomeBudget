@@ -3,6 +3,7 @@ package com.studios.samad.homebudget;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,7 +31,7 @@ public class ViewBillsActivity extends Activity {
     private AddBillsActivity obj;
     private String ActivityType;
     private Preferences p;
-
+    private Button add;
 
 
     @Override
@@ -68,7 +70,6 @@ public class ViewBillsActivity extends Activity {
 
 
 
-
         view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
@@ -77,17 +78,34 @@ public class ViewBillsActivity extends Activity {
                 // TODO Auto-generated method stub
                 createDialog();
                 Notify.show();
-                obj =  detailed_arr.get(arg2);
+                obj = detailed_arr.get(arg2);
                 //Log.v("obj value", obj.getName() +"");
                 return true;
             }
         });
 
 
-        Set_Refresh_Data();
+        add = (Button) findViewById(R.id.btn_add_bill);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent myIntent = new Intent(getApplicationContext(), AddBillsActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+
 
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Set_Refresh_Data();
+
+    }
 
 
     public void createDialog()
