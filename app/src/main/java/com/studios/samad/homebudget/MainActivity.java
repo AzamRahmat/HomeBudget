@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(MainActivity.this, AddIncomeActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, ViewIncomeActivity.class);
                 startActivity(myIntent);
 
             }
