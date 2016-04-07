@@ -839,13 +839,13 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
 
     // **************** Get All Budget *******************
-    public ArrayList<AddBudgetActivity> VewAllBudget() {
+    public ArrayList<AddBudgetActivity> VewAllBudget(String category) {
 
         ArrayList<AddBudgetActivity> lstLoc = new ArrayList<AddBudgetActivity>();
 
         try {
 
-            String selectQuery = "SELECT * FROM " + Budget;
+            String selectQuery = "SELECT * FROM " + Budget +" where BudgetCatg='"+category+"'";
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.rawQuery(selectQuery, null);
             if (cursor.moveToFirst()) {

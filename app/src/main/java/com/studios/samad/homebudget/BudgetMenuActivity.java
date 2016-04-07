@@ -16,11 +16,13 @@ public class BudgetMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_budget);
 
+        final AddBudgetActivity addBudgetActivity = new AddBudgetActivity();
+
         RelativeLayout expenses_layout = (RelativeLayout) findViewById(R.id.rent_layout);
         expenses_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                addBudgetActivity.setSelected_Budget_catg("Rent");
                 Intent myIntent = new Intent(BudgetMenuActivity.this, ViewBudgetActivity.class);
                 startActivity(myIntent);
 
@@ -32,7 +34,8 @@ public class BudgetMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(BudgetMenuActivity.this, AddBudgetActivity.class);
+                addBudgetActivity.setSelected_Budget_catg("Food");
+                Intent myIntent = new Intent(BudgetMenuActivity.this, ViewBudgetActivity.class);
                 startActivity(myIntent);
 
             }
@@ -42,7 +45,8 @@ public class BudgetMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(BudgetMenuActivity.this, AddBudgetActivity.class);
+                addBudgetActivity.setSelected_Budget_catg("Departmental");
+                Intent myIntent = new Intent(BudgetMenuActivity.this, ViewBudgetActivity.class);
                 startActivity(myIntent);
 
             }
@@ -52,7 +56,8 @@ public class BudgetMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(BudgetMenuActivity.this, AddBudgetActivity.class);
+                addBudgetActivity.setSelected_Budget_catg("Entertainment");
+                Intent myIntent = new Intent(BudgetMenuActivity.this, ViewBudgetActivity.class);
                 startActivity(myIntent);
 
             }
@@ -62,7 +67,8 @@ public class BudgetMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(BudgetMenuActivity.this, AddBudgetActivity.class);
+                addBudgetActivity.setSelected_Budget_catg("Car");
+                Intent myIntent = new Intent(BudgetMenuActivity.this, ViewBudgetActivity.class);
                 startActivity(myIntent);
 
             }
@@ -72,7 +78,8 @@ public class BudgetMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(BudgetMenuActivity.this, AddBudgetActivity.class);
+                addBudgetActivity.setSelected_Budget_catg("Medical");
+                Intent myIntent = new Intent(BudgetMenuActivity.this, ViewBudgetActivity.class);
                 startActivity(myIntent);
 
             }

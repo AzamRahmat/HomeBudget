@@ -36,6 +36,18 @@ public class AddBudgetActivity extends AppCompatActivity {
     private String str_Budget_catg;
     private String  str_Budget_amount;
     private String str_Budget_date;
+    private static String selected_Budget_catg;
+
+
+    public String getSelected_Budget_catg() {
+        return selected_Budget_catg;
+    }
+
+    public void setSelected_Budget_catg(String selected_Budget_catg) {
+        this.selected_Budget_catg = selected_Budget_catg;
+    }
+
+
 
 
     public int getBudget_id() {

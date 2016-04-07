@@ -111,11 +111,13 @@ public class ViewBudgetActivity extends AppCompatActivity {
 
     public void Set_Refresh_Data() {
         detailed_arr.clear();
+        AddBudgetActivity obj = new AddBudgetActivity();
+        String category = obj.getSelected_Budget_catg();
+        ArrayList<AddBudgetActivity> arr = db.VewAllBudget(category);
 
-        ArrayList<AddBudgetActivity> arr = db.VewAllBudget();
 
         for (int i = 0; i < arr.size(); i++) {
-            AddBudgetActivity obj = new AddBudgetActivity();
+          //  AddBudgetActivity obj = new AddBudgetActivity();
             obj.setBudget_id(arr.get(i).getBudget_id());
             obj.setBudget_catg(arr.get(i).getBudget_catg());
             // Toast.makeText(getApplicationContext(),arr.get(i).getBudget_catg(),Toast.LENGTH_LONG).show();
