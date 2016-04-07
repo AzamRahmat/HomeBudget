@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 /**
  * Created by Omer on 31-Mar-16.
  */
 public class BudgetMenuActivity extends AppCompatActivity {
 
+    private Double[] total = new Double[6];
+
+    String[] category = {"Home","Food","Departmental","Entertainment","Car","Medical"};
+    TextView[] textCategory = new TextView[6];
+    DataBaseHandler dataBaseHandler ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +28,7 @@ public class BudgetMenuActivity extends AppCompatActivity {
         expenses_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addBudgetActivity.setSelected_Budget_catg("Rent");
+                addBudgetActivity.setSelected_Budget_catg("Home");
                 Intent myIntent = new Intent(BudgetMenuActivity.this, ViewBudgetActivity.class);
                 startActivity(myIntent);
 
@@ -84,5 +90,39 @@ public class BudgetMenuActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+        dataBaseHandler = new DataBaseHandler(this.getApplicationContext());
+
+        textCategory[0]= (TextView)findViewById(R.id.slct_bgt_home_amount);
+        textCategory[1]= (TextView)findViewById(R.id.slct_bgt_food_amount);
+        textCategory[2]= (TextView)findViewById(R.id.slct_bgt_dept_amount);
+        textCategory[3]= (TextView)findViewById(R.id.slct_bgt_ent_amount);
+        textCategory[4]= (TextView)findViewById(R.id.slct_bgt_car_amount);
+        textCategory[5]= (TextView)findViewById(R.id.slct_bgt_med_amount);
+
+
+    }
+
+
+    public Double getTotal(int i) {
+        if (total[i]==null) {
+            total[i] = 0.0;
+        }
+        return total[i];
+    }
+
+    public void setTotal(Double total,int i) {
+        this.total[i] = total;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       for(int i=0; i<6; i++) {
+           setTotal(dataBaseHandler.getTotalBudgetCategory(category[i]),i);
+           textCategory[i].setText("$" + getTotal(i).toString());
+       }
     }
 }

@@ -272,6 +272,36 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         return sum;
     }
 
+
+    public Double getTotalBudgetCategory(String category) {
+
+        Double sum = 0.0;
+        try {
+
+            String selectQuery = "SELECT SUM(BudgetAmount) FROM Budget where BudgetCatg='"+category+"'";
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.moveToFirst()) {
+                do {
+
+                    sum = cursor.getDouble(0);
+
+
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+            db.close();
+
+        } catch (Exception e) {
+
+            //Toast.makeText(this,e, Toast.LENGTH_SHORT).show();
+            Log.d("catch", "IN Catch");
+        }
+
+        return sum;
+    }
+
     public Double setTotalBills() {
 
         Double sum = 0.0;
