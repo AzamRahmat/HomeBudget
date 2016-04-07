@@ -198,7 +198,7 @@ public class AddBudgetActivity extends AppCompatActivity {
 
             // Adding values to variables then in database
 
-            str_Budget_catg = txtBgtName.getText().toString();
+            str_Budget_catg = getSelected_Budget_catg();//txtBgtName.getText().toString();
             str_Budget_amount = txtBgtAmount.getText().toString();
             str_Budget_date = txtBgtDate.getText().toString();
 
