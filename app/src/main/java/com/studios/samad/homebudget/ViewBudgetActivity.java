@@ -125,7 +125,7 @@ public class ViewBudgetActivity extends AppCompatActivity {
             // Toast.makeText(getApplicationContext(),arr.get(i).getBudget_amount(),Toast.LENGTH_LONG).show();
             obj.setBudget_date(arr.get(i).getBudget_date());
             //  Toast.makeText(getApplicationContext(),arr.get(i).getBudget_date(),Toast.LENGTH_LONG).show();
-
+            obj.setBudget_discr(arr.get(i).getBudget_discr());
             detailed_arr.add(obj);
         }
 
@@ -190,7 +190,7 @@ public class ViewBudgetActivity extends AppCompatActivity {
 
             act = data.get(position);
 
-            holder.lbl_name.setText(act.getBudget_catg());
+            holder.lbl_name.setText(act.getBudget_discr());
             holder.lbl_amount.setText(act.getBudget_amount());
             holder.lbl_date.setText(act.getBudget_date());
 

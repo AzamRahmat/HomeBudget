@@ -15,7 +15,7 @@ import java.util.Calendar;
  */
 public class DataBaseHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 14;
     private static final String DATABASE_NAME = "HomeBudget";
 
     private static final String Expenses = "Expenses";
@@ -38,8 +38,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE IF NOT EXISTS Income (IncomeID INTEGER PRIMARY KEY, IncomeName  TEXT, IncomeAmount  INT,	IncomeDate  TEXT )");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS Totals (TotalID INTEGER PRIMARY KEY, BudgetDate  TEXT, TotalExpense  DOUBLE, TotalBudget DOUBLE, TotalBill DOUBLE,TotalIncome  DOUBLE , TotalAvailable  DOUBLE )");
-        db.execSQL("CREATE TABLE IF NOT EXISTS Budget (BudgetID INTEGER PRIMARY KEY, BudgetCatg  TEXT, BudgetAmount INT, BudgetDate  TEXT )");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Totals (TotalID INTEGER PRIMARY KEY, TotalExpense  DOUBLE, TotalBudget DOUBLE, TotalBill DOUBLE,TotalIncome  DOUBLE , TotalAvailable  DOUBLE )");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Budget (BudgetID INTEGER PRIMARY KEY, BudgetCatg  TEXT, BudgetAmount INT, BudgetDate  TEXT, BudgetDiscr  TEXT )");
     }
 
     @Override
@@ -830,7 +830,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         values.put("BudgetCatg", String.valueOf(obj.getBudget_catg()));
         values.put("BudgetAmount", String.valueOf(obj.getBudget_amount()));
         values.put("BudgetDate", String.valueOf(obj.getBudget_date()));
-
+        values.put("BudgetDiscr", String.valueOf(obj.getBudget_discr()));
         db.insert(Budget, null, values);
         db.close();
         setTotalBudget();
@@ -850,7 +850,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         values.put("BudgetCatg", String.valueOf(obj.getBudget_catg()));
         values.put("BudgetAmount", String.valueOf(obj.getBudget_amount()));
         values.put("BudgetDate", String.valueOf(obj.getBudget_date()));
-
+        values.put("BudgetDiscr", String.valueOf(obj.getBudget_discr()));
         db.update(Budget, values, "BudgetID = ?", new String[]{String.valueOf(obj.getBudget_id())});
 
         db.close();
@@ -886,7 +886,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                     object.setBudget_catg(cursor.getString(cursor.getColumnIndex("BudgetCatg")));
                     object.setBudget_amount(cursor.getString(cursor.getColumnIndex("BudgetAmount")));
                     object.setBudget_date(cursor.getString(cursor.getColumnIndex("BudgetDate")));
-
+                    object.setBudget_discr(cursor.getString(cursor.getColumnIndex("BudgetDiscr")));
                     lstLoc.add(object);
 
                 } while (cursor.moveToNext());
@@ -927,7 +927,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                         .getColumnIndex("BudgetDate")));
 
 
-            }
+            }object.setBudget_discr(cursor.getString(cursor
+                    .getColumnIndex("BudgetDiscr")));
 
             cursor.close();
             db.close();

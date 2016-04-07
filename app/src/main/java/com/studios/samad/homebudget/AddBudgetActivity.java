@@ -37,6 +37,7 @@ public class AddBudgetActivity extends AppCompatActivity {
     private String  str_Budget_amount;
     private String str_Budget_date;
     private static String selected_Budget_catg;
+    private String budget_discr;
 
 
     public String getSelected_Budget_catg() {
@@ -201,7 +202,7 @@ public class AddBudgetActivity extends AppCompatActivity {
             str_Budget_catg = getSelected_Budget_catg();//txtBgtName.getText().toString();
             str_Budget_amount = txtBgtAmount.getText().toString();
             str_Budget_date = txtBgtDate.getText().toString();
-
+            budget_discr = txtBgtName.getText().toString();
             // checking for existing location
             if(! dbHandler.CheckBudgetEXIST(AddBudgetActivity.this)
                     ){
@@ -238,10 +239,10 @@ public class AddBudgetActivity extends AppCompatActivity {
 
             // Adding values to variables then in database
 
-            str_Budget_catg = txtBgtName.getText().toString();
+            str_Budget_catg = getSelected_Budget_catg();
             str_Budget_amount = txtBgtAmount.getText().toString();
             str_Budget_date = txtBgtDate.getText().toString();
-
+            budget_discr = txtBgtName.getText().toString();
             //Update db
             dbHandler.UpdateBudget(AddBudgetActivity.this);
 
@@ -302,4 +303,11 @@ public class AddBudgetActivity extends AppCompatActivity {
             };
 
 
+    public String getBudget_discr() {
+        return budget_discr;
+    }
+
+    public void setBudget_discr(String budget_discr) {
+        this.budget_discr = budget_discr;
+    }
 }
