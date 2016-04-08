@@ -2,8 +2,8 @@ package com.studios.samad.homebudget;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     AvailableAmount availableAmount = AvailableAmount.getInstance();
     DataBaseHandler dataBaseHandler ;
-    TextView availableAmountText ,expensesText ,incomeText , budgetText, billsText ;
+    TextView availableAmountText ,expensesText ,incomeText , budgetText, billsText, accountText ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,13 +72,26 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        RelativeLayout account_layout = (RelativeLayout) findViewById(R.id.accounts_layout);
+
+        account_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent myIntent = new Intent(MainActivity.this, ViewAccountsActivity.class);
+                startActivity(myIntent);
+
+            }
+        });
 
         dataBaseHandler = new DataBaseHandler(this.getApplicationContext());
         dataBaseHandler.setTotalExpenses();
         dataBaseHandler.setTotalIncome();
         dataBaseHandler.setTotalBudget();
+        dataBaseHandler.setTotalAccount();
         dataBaseHandler.setTotalBills();
         dataBaseHandler.setTotalAvailable();
+
 
 
     }
@@ -91,26 +104,30 @@ public class MainActivity extends AppCompatActivity {
         incomeText  = (TextView)findViewById(R.id.income_edit_text);
         budgetText  = (TextView)findViewById(R.id.budget_edit_text);
         billsText = (TextView)findViewById(R.id.bills_edit_text);
+        accountText = (TextView)findViewById(R.id.accounts_edit_text);
         displayTotals();
 
 
     }
 
     public void displayTotals() {
+
         dataBaseHandler.setTotalAvailable();
         TotalAmount obj = TotalAmount.getInstance();
-        String expenses = obj.getTotalExpense().toString();
 
+        String expenses = obj.getTotalExpense().toString();
         expensesText.setText(expenses);
 
         String budget = obj.getTotalBudget().toString();
-
         budgetText.setText(budget);
+
         String income = obj.getTotalIncome().toString();
-
         incomeText.setText(income);
-        String bill = obj.getTotalBill().toString();
 
+        String account= obj.getTotalAccount().toString();
+        accountText.setText(account);
+
+        String bill = obj.getTotalBill().toString();
        billsText.setText(bill);
 
         availableAmountText.setText(displayAvailableAmount());

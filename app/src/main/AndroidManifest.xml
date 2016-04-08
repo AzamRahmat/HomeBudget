@@ -11,7 +11,7 @@
         <receiver
             android:name=".NotificationService"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -20,28 +20,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewExpensesActivity"></activity>
-        <activity android:name=".AddExpensesActivity"></activity>
-        <activity android:name=".AddBillsActivity"></activity>
-        <activity android:name=".ViewBillsActivity"></activity>
-        <activity android:name=".AddIncomeActivity"></activity>
-        <activity android:name=".ViewIncomeActivity"></activity>
-        <activity android:name=".BudgetMenuActivity"></activity>
-        <activity android:name=".AddRentActivity"></activity>
-        <activity android:name=".ViewRentActivity"></activity>
-        <activity android:name=".AddFoodActivity"></activity>
-        <activity android:name=".ViewFoodActivity"></activity>
-        <activity android:name=".AddDepartmentalActivity"></activity>
-        <activity android:name=".ViewDepartmentalActivity"></activity>
-        <activity android:name=".AddEntertainmentActivity"></activity>
-        <activity android:name=".ViewEntertainmentActivity"></activity>
-        <activity android:name=".AddCarActivity"></activity>
-        <activity android:name=".ViewCarActivity"></activity>
-        <activity android:name=".AddMedActivity"></activity>
-        <activity android:name=".ViewMedActivity"></activity>
-        <activity android:name=".TotalAmount"></activity>
-        <activity android:name=".AddBudgetActivity"></activity>
-        <activity android:name=".ViewBudgetActivity"></activity>
+        <activity android:name=".ViewExpensesActivity" />
+        <activity android:name=".AddExpensesActivity" />
+        <activity android:name=".AddBillsActivity" />
+        <activity android:name=".ViewBillsActivity" />
+        <activity android:name=".AddIncomeActivity" />
+        <activity android:name=".ViewIncomeActivity" />
+        <activity android:name=".BudgetMenuActivity" />
+        <activity android:name=".AddRentActivity" />
+        <activity android:name=".ViewRentActivity" />
+        <activity android:name=".AddFoodActivity" />
+        <activity android:name=".ViewFoodActivity" />
+        <activity android:name=".AddDepartmentalActivity" />
+        <activity android:name=".ViewDepartmentalActivity" />
+        <activity android:name=".AddEntertainmentActivity" />
+        <activity android:name=".ViewEntertainmentActivity" />
+        <activity android:name=".AddCarActivity" />
+        <activity android:name=".ViewCarActivity" />
+        <activity android:name=".AddMedActivity" />
+        <activity android:name=".ViewMedActivity" />
+        <activity android:name=".TotalAmount" />
+        <activity android:name=".AddBudgetActivity" />
+        <activity android:name=".ViewBudgetActivity" />
+        <activity android:name=".ViewAccountsActivity" />
+        <activity android:name=".AddAccountActivity"></activity>
     </application>
 
 </manifest>

@@ -18,6 +18,9 @@ public class TotalAmount extends AppCompatActivity {
     private static TotalAmount   _instance;
     private Double totalIncome;
 
+
+    private Double totalAccount;
+
     private TotalAmount()
     {
 
@@ -113,7 +116,12 @@ public class TotalAmount extends AppCompatActivity {
     }
 
 
+    public void setTotalAccount(Double totalAccount) {
+        this.totalAccount = totalAccount;
+    }
 
-
+    public Double getTotalAccount() {
+        return totalAccount;
+    }
 
 }

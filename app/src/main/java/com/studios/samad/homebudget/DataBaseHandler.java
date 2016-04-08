@@ -15,7 +15,7 @@ import java.util.Calendar;
  */
 public class DataBaseHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 17;
     private static final String DATABASE_NAME = "HomeBudget";
 
     private static final String Expenses = "Expenses";
@@ -23,7 +23,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     private static final String Income = "Income";
     private static final String Budget = "Budget";
     private static final String Totals = "Totals";
-
+    private static final String Account = "Account";
 
     public DataBaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,10 +38,12 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE IF NOT EXISTS Income (IncomeID INTEGER PRIMARY KEY, IncomeName  TEXT, IncomeAmount  INT,	IncomeDate  TEXT )");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS Totals (TotalID INTEGER PRIMARY KEY, TotalExpense  DOUBLE, TotalBudget DOUBLE, TotalBill DOUBLE,TotalIncome  DOUBLE , TotalAvailable  DOUBLE )");
-        db.execSQL("CREATE TABLE IF NOT EXISTS Budget (BudgetID INTEGER PRIMARY KEY, BudgetCatg  TEXT, BudgetAmount INT, BudgetDate  TEXT, BudgetDiscr  TEXT )");
-    }
+        db.execSQL("CREATE TABLE IF NOT EXISTS Totals (TotalID INTEGER PRIMARY KEY, TotalExpense  DOUBLE, TotalBudget DOUBLE, TotalBill DOUBLE, TotalIncome  DOUBLE, TotalAccount  DOUBLE  , TotalAvailable  DOUBLE )");
 
+        db.execSQL("CREATE TABLE IF NOT EXISTS Budget (BudgetID INTEGER PRIMARY KEY, BudgetCatg  TEXT, BudgetAmount INT, BudgetDate  TEXT, BudgetDiscr  TEXT )");
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS Account (AccountID INTEGER PRIMARY KEY, AccountName  TEXT, AccountAmount  INT,	AccountDate  TEXT )");
+    }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -51,6 +53,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Income");
         db.execSQL("DROP TABLE IF EXISTS Totals");
         db.execSQL("DROP TABLE IF EXISTS Budget");
+        db.execSQL("DROP TABLE IF EXISTS Account");
 //haha bs krty jao drop :/
 
         onCreate(db);
@@ -177,6 +180,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         values.put("TotalBill", String.valueOf(obj.getTotalBill()));
         values.put("TotalAvailable", String.valueOf(obj.getTotalAvailable()));
         values.put("TotalIncome", String.valueOf(obj.getTotalIncome()));
+        values.put("TotalAccount", String.valueOf(obj.getTotalAccount()));
         db.insert(Totals, null, values);
         db.close();
 
@@ -197,6 +201,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         values.put("TotalBill", String.valueOf(obj.getTotalBill()));
         values.put("TotalAvailable", String.valueOf(obj.getTotalAvailable()));
         values.put("TotalIncome", String.valueOf(obj.getTotalIncome()));
+        values.put("TotalAccount", String.valueOf(obj.getTotalAccount()));
         db.update(Totals, values, "TotalID=" + getDateForTotalsTable(), null);
 
 
@@ -239,6 +244,40 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         return sum;
     }
 
+
+
+    public Double setTotalAccount() {
+
+        Double sum = 0.0;
+        try {
+
+            String selectQuery = "SELECT SUM(AccountAmount) FROM Account";
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.moveToFirst()) {
+                do {
+
+                    sum = cursor.getDouble(0);
+
+
+                } while (cursor.moveToNext());
+            }
+            TotalAmount obj = TotalAmount.getInstance();
+            obj.setTotalAccount(sum);
+            addTotals();
+            cursor.close();
+            db.close();
+
+        } catch (Exception e) {
+
+            //Toast.makeText(this,e,Toast.LENGTH_SHORT).show();
+            Log.d("catch", "IN Catch");
+        }
+
+
+
+        return sum;
+    }
     // **************** Get Expenses By ID*******************
 
     public Double setTotalIncome() {
@@ -812,6 +851,136 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         db.delete(Income, "IncomeID = ?", new String[]{String.valueOf(id)});
         db.close();
         setTotalIncome();
+        updateTotal();
+    }
+
+
+
+
+
+    // ******************** Adding Account ********************
+    public void AddAccounts(AddAccountActivity obj) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Long id = selectMaxID(Account, "AccountID");
+        ContentValues values = new ContentValues();
+        values.put("AccountID", id);
+        values.put("AccountName", String.valueOf(obj.getAccounts_name()));
+        values.put("AccountAmount", String.valueOf(obj.getAccounts_amount()));
+        values.put("AccountDate", String.valueOf(obj.getAccounts_date()));
+
+        db.insert(Account, null, values);
+
+        db.close();
+        setTotalAccount();
+        updateTotal();
+
+    }
+
+
+    // ******************** Update Account ********************
+
+    public void UpdateAccounts(AddAccountActivity obj) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("AccountName", String.valueOf(obj.getAccounts_name()));
+        values.put("AccountAmount", String.valueOf(obj.getAccounts_amount()));
+        values.put("AccountDate", String.valueOf(obj.getAccounts_date()));
+
+        db.update(Account, values, "AccountID = ?", new String[]{String.valueOf(obj.getAccounts_id())});
+
+        db.close();
+        setTotalAccount();
+        updateTotal();
+
+    }
+
+    public boolean CheckAccountsEXIST(AddAccountActivity obj) {
+
+        return CHK_EXIST(Account, "AccountName", obj.getAccounts_name());
+
+    }
+
+
+
+    // **************** Get All Account *******************
+    public ArrayList<AddAccountActivity> VewAllAccount() {
+
+        ArrayList<AddAccountActivity> lstLoc = new ArrayList<AddAccountActivity>();
+
+        try {
+
+            String selectQuery = "SELECT * FROM " + Account;
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.moveToFirst()) {
+                do {
+
+                    AddAccountActivity object = new AddAccountActivity();
+                    object.setAccounts_id(cursor.getInt(cursor.getColumnIndex("AccountID")));
+                    object.setAccounts_name(cursor.getString(cursor.getColumnIndex("AccountName")));
+                    object.setAccounts_amount(cursor.getString(cursor.getColumnIndex("AccountAmount")));
+                    object.setAccounts_date(cursor.getString(cursor.getColumnIndex("AccountDate")));
+
+                    lstLoc.add(object);
+
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+            db.close();
+
+        } catch (Exception e) {
+        }
+
+        return lstLoc;
+
+    }
+
+
+    // **************** Get Account By ID*******************
+
+    public AddAccountActivity getAccounts(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        AddAccountActivity object = new AddAccountActivity();
+
+
+        try {
+
+            String selectQuery = "SELECT  * FROM " + Account + " Where AccountID = " + id + " ";
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            if (cursor != null && cursor.moveToFirst()) {
+
+                object.setAccounts_id(cursor.getInt(cursor
+                        .getColumnIndex("AccountID")));
+                object.setAccounts_name(cursor.getString(cursor
+                        .getColumnIndex("AccountName")));
+                object.setAccounts_amount(cursor.getString(cursor
+                        .getColumnIndex("AccountAmount")));
+                object.setAccounts_date(cursor.getString(cursor
+                        .getColumnIndex("AccountDate")));
+
+
+            }
+
+            cursor.close();
+            db.close();
+
+        } catch (Exception e) {
+
+        }
+
+        return object;
+    }
+
+
+    //**************** Delete Account *******************
+    public void DeleteAccount(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Account, "AccountID = ?", new String[]{String.valueOf(id)});
+        db.close();
+        setTotalAccount();
         updateTotal();
     }
 
